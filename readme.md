@@ -41,6 +41,8 @@ This file contains utility functions that facilitate interactions with the Googl
 
 ### `Client_Secret.json`
 
+**_For security reasons, I haven't uploaded it publicly._**
+
 This file is a credential file generated from the Google Cloud Console. It contains sensitive information required for authenticating access to the Google Sheets API. The file typically includes:
 
 - Client ID and Client Secret, which identify the application using the API.
