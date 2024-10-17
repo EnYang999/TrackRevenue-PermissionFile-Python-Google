@@ -28,20 +28,32 @@ def load_permissions_from_json(json_file_path):
     with open(json_file_path, 'r') as file:
         return json.load(file)
 
-def transform_permissions_to_dataframe(permissions):
-    all_permissions = ['view_grades', 'change_grades', 'add_grades', 'delete_grades',
-                       'view_classes', 'change_classes', 'add_classes', 'delete_classes']
+def transform_permissions_to_dataframe(user_permissions):
+    # Define all possible permissions
+    all_permissions = [
+        'view_grades', 'change_grades', 'add_grades', 'delete_grades',
+        'view_classes', 'change_classes', 'add_classes', 'delete_classes'
+    ]
 
-    # Create a dictionary to store user permissions as rows
-    data = {
-        user: [1 if perm in user_perms else 0 for perm in all_permissions]
-        for user, user_perms in permissions.items()
+    # Create a dictionary to store each user's permission status as rows
+    permissions_matrix = {
+        user: [1 if perm in assigned_perms else 0 for perm in all_permissions]
+        for user, assigned_perms in user_permissions.items()
     }
-    header_row_bin = {' ': all_permissions}
-    bin = pd.concat([pd.DataFrame(header_row_bin).T, pd.DataFrame(data).reset_index(drop=True).T], ignore_index=True)
-    bin.index = [' ']+list(data.keys())
+
+    # Create the header row for permissions
+    header_row = {' ': all_permissions}
+
+    # Concatenate the header row with the user permission data
+    permissions_df = pd.concat(
+        [pd.DataFrame(header_row).T, pd.DataFrame(permissions_matrix).reset_index(drop=True).T], 
+        ignore_index=True
+    )
+
+    # Set the row labels to match users, adding an empty label for the header
+    permissions_df.index = [' '] + list(permissions_matrix.keys())
     
-    return bin
+    return permissions_df
 
 def update_spreadsheet_with_data(service, spreadsheet_id, data):
     values = data.reset_index().values.tolist()
