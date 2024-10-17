@@ -22,6 +22,26 @@ You can install the required libraries using the following command:
 pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client pandas
 ```
 
+## Files
+
+### sheets_google.py
+
+The main function including
+
+### Google.py
+
+Utility function file
+
+### Client_Secret.json
+
+google console,
+
+### example.json
+
+Provided users' permission
+
+### .gitignore
+
 ## Usage
 
 1. Ensure the `Client_Secret.json` file is placed in the same directory as the script.
