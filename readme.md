@@ -22,25 +22,44 @@ You can install the required libraries using the following command:
 pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client pandas
 ```
 
+Here’s a description of the functions and purposes of each of the specified files:
+
 ## Files
 
-### sheets_google.py
+### `sheets_google.py`
 
-The main function including
+This is the main script that orchestrates the functionality related to Google Sheets. It includes:
 
-### Google.py
+- The `main` function, which initializes the Google Sheets API service, creates a new spreadsheet, loads user permissions from a JSON file, transforms the permission data into a DataFrame, and updates the spreadsheet with that data.
+- Function calls to other utility functions for service initialization and data handling.
 
-Utility function file
+### `Google.py`
 
-### Client_Secret.json
+This file contains utility functions that facilitate interactions with the Google Sheets API. It includes:
 
-google console,
+- Functions to initialize the Google API service, create spreadsheets, and update spreadsheet data.
 
-### example.json
+### `Client_Secret.json`
 
-Provided users' permission
+This file is a credential file generated from the Google Cloud Console. It contains sensitive information required for authenticating access to the Google Sheets API. The file typically includes:
 
-### .gitignore
+- Client ID and Client Secret, which identify the application using the API.
+- Required information for setting up OAuth 2.0, allowing users to authorize access to their Google Sheets.
+- Where to download the file
+  1. Go to Google Cloud Console
+  2. Choose Google Sheets API
+  3. Go to Credential and create a new one under the type of "Desktop App"
+     ![Client_Secret.json](/sample/Client_Secrets_Download.png)
+
+### `example.json`
+
+This JSON file provides predefined user permissions used in the application. It contains:
+
+- A structured representation of user identifiers (e.g., usernames or roles) and their associated permission levels.
+
+### `.gitignore`
+
+This file specifies which files and directories should be ignored by Git version control.
 
 ## Usage
 
@@ -148,10 +167,10 @@ The main function that ties everything together:
 }
 ```
 
+## Result
+
+![Process](/sample/success_convert.gif)
+
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-This `README.md` provides a clear overview of the script, its functions, and instructions for usage. It also describes the purpose of each function concisely.
