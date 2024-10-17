@@ -38,7 +38,7 @@ pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-pyt
 3. Run the script using the following command:
 
 ```bash
-python your_script_name.py
+python sheets_google.py
 ```
 
 The script will:
